@@ -54,37 +54,21 @@ const encriptarLetras = {
 encriptar.addEventListener('click', () => {
   const mensaje = document.getElementById('texto').value.toLowerCase();
 
-  const mensajeEncriptar = mensaje.split('').map((letra) => encriptarLetras[letra] || letra).join('');
+  const encriptarMensaje = mensaje.split('').map((letra) => encriptarLetras[letra] || letra).join('');
 
-  document.getElementById('texto-encriptado').value = mensajeEncriptar;
+  document.getElementById('texto-encriptado').value = encriptarMensaje;
 });
 
 // EVENT BOTON DESENCRIPTAR
 
 desencriptar.addEventListener('click', () => {
-  const mensajeDesencriptado = document.getElementById('texto').value.toLowerCase();
-  let mensajeDesencriptadoR = '';
-  for (let i = 0; i < mensajeDesencriptado.length; i += 1) {
-    if (mensajeDesencriptado.substring(i, i + 5) === 'enter') {
-      mensajeDesencriptadoR += 'e';
-      i += 4;
-    } else if (mensajeDesencriptado.substring(i, i + 4) === 'ober') {
-      mensajeDesencriptadoR += 'o';
-      i += 3;
-    } else if (mensajeDesencriptado.substring(i, i + 4) === 'imes') {
-      mensajeDesencriptadoR += 'i';
-      i += 3;
-    } else if (mensajeDesencriptado.substr(i, 2) === 'ai') {
-      mensajeDesencriptadoR += 'a';
-      i += 1;
-    } else if (mensajeDesencriptado.substring(i, i + 4) === 'ufat') {
-      mensajeDesencriptadoR += 'u';
-      i += 3;
-    } else {
-      mensajeDesencriptadoR += mensajeDesencriptado[i];
-    }
-  }
-  document.getElementById('texto-encriptado').value = mensajeDesencriptadoR;
-});
+  const mensaje = document.getElementById('texto').value.toLowerCase();
 
-// PRUEBAS
+  let txtCifrado = mensaje.replace(/enter/igm, 'e');
+  txtCifrado = txtCifrado.replace(/ober/igm, 'o');
+  txtCifrado = txtCifrado.replace(/imes/igm, 'i');
+  txtCifrado = txtCifrado.replace(/ai/igm, 'a');
+  txtCifrado = txtCifrado.replace(/ufat/igm, 'u');
+
+  document.getElementById('texto-encriptado').value = txtCifrado;
+});
